@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
  
 ////
-import soup from "./media/nosoup.jpg";
+import soup from "./media/soup.jpg";
 import chickens from "./media/chickens.jpg";
 import links from "./media/links.json"; // testing data only
 ////
