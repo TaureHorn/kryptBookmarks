@@ -1,13 +1,10 @@
 #user defined
 
-krypt-frontend/node_modules
 krypt-backend/node_modules
 
-krypt-backend/.env
+krypt-frontend/node_modules
+krypt-frontend/src/media
 
-/media
-
-#
 # /////////////////////////////////////////
 # pre generated (react)
 
