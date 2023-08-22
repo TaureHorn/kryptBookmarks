@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.scss";
+import { ApiDaemon } from "./apiDaemon";
+import { Bookmarks } from "./functions/bookmarks";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+import { useEffect, useState } from "react";
+import { Route, Routes } from "react-router-dom";
+
+import soup from "./resources/nosoup.jpg";
+import chickens from "./resources/chickens.jpg";
+import links from "./links.json"; // testing data only
+
+export default function App() {
+  const bookmarks = new Bookmarks(false, null, null);
+  function test() {
+    bookmarks.data = JSON.stringify(links);
+  }
+  test();
+  return bookmarks.status ? (
+    <>
+      <h1>Look at all this data!</h1>
+      {console.log(bookmarks.data)}
+      <img src={chickens} width="256px" />
+    </>
+  ) : (
+    <>
+      <h1>No bookmarks for you!</h1>
+      <img src={soup} width="256px" />
+    </>
   );
 }
-
-export default App;

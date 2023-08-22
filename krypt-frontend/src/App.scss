@@ -1,0 +1,31 @@
+// colours
+$black: #000000;
+$col: #656565;
+
+// fonts
+$fontSize: 12pt;
+$mono: monospace, Courier;
+
+body {
+    background-color: $black;
+}
+
+p,
+span,
+a,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+label,
+textarea,
+select,
+button {
+    color: $col;
+    font-family: $mono;
+}
+
