@@ -47,6 +47,10 @@ export class Bookmarks {
     });
     return bookmarksArr;
   }
+  removeData() {
+    document.cookie = "bookmarksStorage=false; sameSite=Strict";
+    localStorage.removeItem("bookmarks");
+  }
   writeToStorage() {
     window.localStorage.setItem(
       "bookmarks",
