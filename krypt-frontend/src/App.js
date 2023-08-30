@@ -20,11 +20,19 @@ export default function App() {
   return bookmarks.status ? (
     <>
       <h1>Look at all this data!</h1>
-      <img src={chickens} width="128px" />
+      <img src={chickens} width="512px" />
+      <button // this will later go elsewhere //
+        onClick={() => {
+          bookmarks.removeData();
+          changeBookmarks(new Bookmarks(false, null));
+        }}
+      >
+        delete
+      </button>
     </>
   ) : (
     <>
-      <img src={soup} width="128px" />
+      <img src={soup} width="512px" />
       <ToDecrypt bookmarks={(newBookmarks) => changeBookmarks(newBookmarks)} />
     </>
   );
