@@ -1,7 +1,22 @@
+import { useState } from "react";
+
+import { extractFile } from "../functions/fileDataHandler";
+
 export default function FileSubmitter(props) {
-  function dataPropHandler(e) {
+  const [errMsg, setErrMsg] = useState("");
+
+  async function dataPropHandler(e) {
     e.preventDefault();
-    props.data(e.target);
+    const data = {
+      file: await extractFile(e.target[1].files[0]),
+      algorithm: e.target.algorithm.value,
+      key: e.target.key.value,
+    };
+    try {
+      props.data(data);
+    } catch (err) {
+        setErrMsg(err.message)
+    }
   }
 
   return (
@@ -35,6 +50,7 @@ export default function FileSubmitter(props) {
       <button form="fileSubmitter" type="submit">
         submit
       </button>
+      <p>{errMsg}</p>
     </form>
   );
 }

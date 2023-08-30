@@ -6,8 +6,8 @@ export class Bookmarks {
     this._bookmarksJSON = bookmarksJSON;
   }
   checkStatus() {
-    if (this._bookmarksJSON !== undefined) {
-      this.status = true;
+    if (this._bookmarksJSON) {
+      this._exists = true;
     }
   }
   set status(status) {
@@ -20,27 +20,20 @@ export class Bookmarks {
   get status() {
     return this._exists;
   }
-  set data(obj) {
-    if (typeof obj === "string" && obj.length > 0) {
-      let object = {};
+
+  set data(data) {
+    let bookmarksData = data;
+    if (typeof bookmarksData === "string") {
       try {
-        object = JSON.parse(obj);
-      } catch (error) {
-        console.log("JSON.parse failed while trying to set bookmarks data");
-        console.log(error);
+        bookmarksData = JSON.parse(bookmarksData);
+      } catch (err) {
+        console.log(err.message);
       }
-      typeof object === "object" && objectIsEmpty(object) === false
-        ? (this._bookmarksJSON = object)
-        : console.log(
-            "JSON.parse did not produce a valid object while trying to set booksmarks data"
-          );
-    } else {
-      console.log(
-        "Bookmarks data cannot be set to empty string or non string value"
-      );
-      return;
     }
-    this.checkStatus();
+    if (typeof bookmarksData === "object") {
+      this._bookmarksJSON = bookmarksData;
+      this.checkStatus();
+    }
   }
   get data() {
     return this._bookmarksJSON;
@@ -53,5 +46,11 @@ export class Bookmarks {
       });
     });
     return bookmarksArr;
+  }
+  writeToStorage() {
+    window.localStorage.setItem(
+      "bookmarks",
+      JSON.stringify(this._bookmarksJSON)
+    );
   }
 }
