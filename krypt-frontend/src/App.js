@@ -1,32 +1,31 @@
 import "./App.scss";
 
-import { ApiDaemon } from "./apiDaemon";
-import { Bookmarks } from "./functions/bookmarks";
+import { Bookmarks } from "./functions/bookmarksClass";
 
 import ToDecrypt from "./components/toDecrypt";
 
 import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
- 
+
 ////
 import soup from "./media/soup.jpg";
 import chickens from "./media/chickens.jpg";
-import links from "./media/links.json"; // testing data only
 ////
 
 export default function App() {
-  const bookmarks = new Bookmarks(false, null);
+  const [bookmarks, changeBookmarks] = useState(new Bookmarks(false, null));
+  document.cookie.includes("bookmarksStorage=true")
+    ? (bookmarks.data = localStorage.getItem("bookmarks"))
+    : localStorage.removeItem("bookmarks");
   return bookmarks.status ? (
     <>
       <h1>Look at all this data!</h1>
-      {console.log(bookmarks.data)}
-      <img src={chickens} width="256px" />
+      <img src={chickens} width="128px" />
     </>
   ) : (
     <>
-      <h1>No bookmarks for you!</h1>
-      <img src={soup} width="256px" />
-      <ToDecrypt />
+      <img src={soup} width="128px" />
+      <ToDecrypt bookmarks={(newBookmarks) => changeBookmarks(newBookmarks)} />
     </>
   );
 }

@@ -4,6 +4,7 @@ krypt-backend/node_modules
 
 krypt-frontend/node_modules
 krypt-frontend/src/media
+krypt-frontend/.env
 
 # /////////////////////////////////////////
 # pre generated (react)
