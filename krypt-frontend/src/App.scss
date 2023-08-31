@@ -2,12 +2,23 @@
 $black: #000000;
 $col: #656565;
 
+$border: 1px solid $col;
+$padding: 10px;
+$paddingSmall: 3px;
+
 // fonts
 $fontSize: 12pt;
+$header: calc($fontSize * 2);
 $mono: monospace, Courier;
 
 body {
-    background-color: $black;
+  background: url("./resources/background_dotted-halftone.jpg") $black;
+}
+
+button {
+  background: none;
+  border: $border;
+  color: $col;
 }
 
 p,
@@ -25,7 +36,34 @@ label,
 textarea,
 select,
 button {
-    color: $col;
-    font-family: $mono;
+  color: $col;
+  font-family: $mono;
+}
+.header {
+  font-size: $header;
 }
 
+.title {
+  background-color: $col;
+  color: $black;
+  font-size: calc($fontSize * 4);
+  left: 50%;
+  padding: $paddingSmall;
+  position: absolute;
+  top: 0%;
+  text-transform: uppercase;
+  transform: translate(-50%, 0%);
+}
+
+.center {
+  left: 50%;
+  position: absolute;
+  top: 10%;
+  transform: translate(-50%, 0%);
+}
+.bottom {
+  left: 50%;
+  position: absolute;
+  bottom: 0%;
+  transform: translate(-50%, -50%);
+}

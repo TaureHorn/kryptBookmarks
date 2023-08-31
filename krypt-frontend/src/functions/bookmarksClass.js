@@ -36,7 +36,7 @@ export class Bookmarks {
     }
   }
   get data() {
-    return this._bookmarksJSON;
+    return Object.entries(this._bookmarksJSON);
   }
   get dataList() {
     let bookmarksArr = [];
