@@ -1,6 +1,7 @@
 // colours
 $black: #000000;
 $col: #656565;
+$colHi: #989898;
 
 $border: 1px solid $col;
 $padding: 10px;
@@ -8,7 +9,7 @@ $paddingSmall: 3px;
 
 // fonts
 $fontSize: 12pt;
-$header: calc($fontSize * 2);
+$header: calc($fontSize * 1.5);
 $mono: monospace, Courier;
 
 body {
@@ -19,6 +20,24 @@ button {
   background: none;
   border: $border;
   color: $col;
+  padding: $padding;
+}
+.editButton {
+  width: 100% !important;
+}
+.map {
+  min-height: 25vh;
+  min-width: 8vw;
+}
+dialog {
+  background-color: $black;
+  border: $border;
+}
+input {
+  background-color: $black;
+  border: $border;
+  color: $colHi;
+  outline: none;
 }
 
 p,
@@ -39,8 +58,23 @@ button {
   color: $col;
   font-family: $mono;
 }
+a {
+  text-decoration: none;
+  margin: $padding 0 $padding 0;
+}
+a:hover {
+  color: $colHi;
+}
+.border {
+  border: $border;
+}
+.padding {
+  padding: $padding;
+}
 .header {
   font-size: $header;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 .title {
@@ -52,18 +86,22 @@ button {
   position: absolute;
   top: 0%;
   text-transform: uppercase;
-  transform: translate(-50%, 0%);
+  transform: translate(-50%, -33%);
 }
 
 .center {
   left: 50%;
   position: absolute;
-  top: 10%;
-  transform: translate(-50%, 0%);
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 .bottom {
   left: 50%;
   position: absolute;
   bottom: 0%;
   transform: translate(-50%, -50%);
+}
+.inline {
+  display: flex;
+  gap: 2%;
 }
