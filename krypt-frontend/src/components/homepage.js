@@ -8,31 +8,24 @@ import Map from "./map";
 import Search from "./search";
 
 export default function Homepage(props) {
-  const [title, setTitle] = useState("krypt");
   const navigate = useNavigate();
   const api = new ApiDaemon();
   /////////////////////////// SEARCH AND EVENT LISTENER ///////////////////////////
   const [search, toggleSearch] = useState(false);
-  const characters =
-    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-  document.addEventListener("keydown", (event) => {
-    if (characters.includes(event.key)) {
-      toggleSearch(true);
-    } else if (event.key === "Escape" && search === true) {
-      toggleSearch(false);
-    }
-  });
 
   return (
     <>
-      <h1 className='title'>{title}</h1>
+      <h1 className="title">krypt</h1>
       {search ? (
         <Search
           list={props.bookmarks.dataList}
-          search={(state) => toggleSearch(state)}
+          toggleSearch={(state) => toggleSearch(state)}
         />
       ) : (
-        <Map bookmarks={props.bookmarks} />
+        <Map
+          bookmarks={props.bookmarks.data}
+          toggleSearch={(state) => toggleSearch(state)}
+        />
       )}
       {/*/////////////////////////// BUTTONS //////////////////////////////////*/}
       <div id="buttons" className="bottom">
@@ -53,6 +46,8 @@ export default function Homepage(props) {
         >
           encrypt new file
         </button>
+        {/*///////////////////////////////*/}
+        <button onClick={() => navigate("/editor")}>edit bookmarks</button>
         {/*///////////////////////////////*/}
         <button onClick={() => api.downloader()}>
           download unencrypted JSON

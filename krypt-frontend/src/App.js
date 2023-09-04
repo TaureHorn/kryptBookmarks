@@ -5,8 +5,11 @@ import { Route, Routes } from "react-router-dom";
 
 import { Bookmarks } from "./functions/bookmarksClass";
 
+import Editor from "./components/editor";
 import Homepage from "./components/homepage";
 import ToDecrypt from "./components/toDecrypt";
+
+// TODO add encrypter 
 
 export default function App() {
   const [bookmarks, changeBookmarks] = useState(new Bookmarks(false, null));
@@ -37,6 +40,15 @@ export default function App() {
                 />
               </>
             )
+          }
+        />
+        <Route
+          path="/editor"
+          element={
+            <Editor
+              bookmarks={bookmarks}
+              changeBookmarks={(newBookmarks) => changeBookmarks(newBookmarks)}
+            />
           }
         />
         <Route path="/encrypt" element={<></>} />

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Fuse from "fuse.js";
 
 export default function Search(props) {
@@ -36,8 +36,22 @@ export default function Search(props) {
       </div>
     );
   });
+
+  /////////////////////////// EVENT LISTENER ///////////////////////////
+  useEffect(() => {
+    const keyPressChecker = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        props.toggleSearch(false);
+      }
+    };
+    document.addEventListener("keydown", keyPressChecker);
+    return () => {
+      document.removeEventListener("keydown", keyPressChecker);
+    };
+  }, []);
+
   return (
-    <>
+    <div className="center">
       <form id="fzfform" onSubmit={(e) => formSubmit(e)}>
         <input
           autoFocus
@@ -48,6 +62,6 @@ export default function Search(props) {
         />
       </form>
       {results}
-    </>
+    </div>
   );
 }
