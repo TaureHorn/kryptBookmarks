@@ -22,11 +22,24 @@ export class ApiDaemon {
   }
 
   async encrypt(algorithm, file, key) {
-    console.log("You cant encrypt what you cant see");
+    let encrypted = "";
+    try {
+      encrypted = await axios.post(`${URL}/crypto/encrypt`, {
+        algorithm,
+        file,
+        key,
+      });
+    } catch (error) {
+      encrypted = error;
+    }
+    return encrypted;
   }
 
   async downloader(file, name, algorithm) {
-    console.log("I aint got nothing to download my guy");
+    const fileToDownload = new File([file], `${name}.${algorithm}`, {
+      type: "text/plain",
+    });
+    FileSaver.saveAs(fileToDownload);
   }
 
   dataSaver(data) {

@@ -6,6 +6,7 @@ import { Route, Routes } from "react-router-dom";
 import { Bookmarks } from "./functions/bookmarksClass";
 
 import Editor from "./components/editor";
+import Encrypter from "./components/encrypter";
 import Homepage from "./components/homepage";
 import ToDecrypt from "./components/toDecrypt";
 
@@ -51,7 +52,7 @@ export default function App() {
             />
           }
         />
-        <Route path="/encrypt" element={<></>} />
+        <Route path="/encrypt" element={<Encrypter bookmarks={bookmarks}/>} />
       </Routes>
     </>
   );

@@ -8,7 +8,8 @@ import { objectIsEmpty } from "../functions/objectIsEmpty";
 
 export default function ToDecrypt(props) {
   const [formData, setFormData] = useState("");
-  const [message, setMessage] = useState("decrypt a file");
+  const title = "krypt/decrypter";
+  const [message, setMessage] = useState(title);
   const api = new ApiDaemon();
 
   useEffect(() => {
@@ -16,6 +17,14 @@ export default function ToDecrypt(props) {
       apiCall();
     }
   }, [formData]);
+
+  useEffect(() => {
+    if (message !== title) {
+      setTimeout(() => {
+        setMessage(title);
+      }, 10000);
+    }
+  });
 
   function apiCall() {
     api
@@ -42,11 +51,13 @@ export default function ToDecrypt(props) {
 
   return (
     <>
-      <h1>{message}</h1>
-      <FileSubmitter
-        data={(formData) => setFormData(formData)}
-        fileType={"text"}
-      />
+      <h1 className="title">{message}</h1>
+      <div className="center">
+        <FileSubmitter
+          data={(formData) => setFormData(formData)}
+          fileType={"text"}
+        />
+      </div>
     </>
   );
 }

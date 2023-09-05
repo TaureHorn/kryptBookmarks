@@ -149,7 +149,7 @@ export default function Editor(props) {
         </form>
       </dialog>
       {/*//////////////////// DATA ////////////////////////////////*/}
-      <h1 className="title">edit mode</h1>
+      <h1 className="title">krypt/editor</h1>
       <div className="center">{editorMap}</div>
     </>
   );
