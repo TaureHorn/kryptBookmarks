@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BrowserRouter, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
 import { Bookmarks } from "../functions/bookmarksClass";
@@ -19,24 +19,6 @@ export default function Editor(props) {
   function editorMapper(bookmarks) {
     return (
       <>
-        <button
-          id="addCategory"
-          onClick={() => {
-            const form = document.getElementById("addCategoryForm");
-            form.style.display = "inline";
-          }}
-        >
-          add new category
-        </button>
-        <form
-          id="addCategoryForm"
-          name="addCategory"
-          onSubmit={(e) => addCategory(e)}
-          style={{ display: "none" }}
-        >
-          <input name="categoryName" type="text" required />
-        </form>
-
         <div className="inline">
           {bookmarks.map((header, index) => {
             return (
@@ -78,17 +60,11 @@ export default function Editor(props) {
             );
           })}
         </div>
-        <div id="editorButtons">
-          <p>
-            Click on an entry or category to delete it, or click the plus
-            buttons to add a new entry or category
-          </p>
-          <button onClick={() => saveEdits()}>save edits</button>
-          <button onClick={() => discardEdits()}>discard changes</button>
-        </div>
       </>
     );
   }
+
+  /////////////////////////// BUTTON FUNCTIONS ///////////////////////////
   function addCategory(e) {
     e.preventDefault();
     const newData = [...editorBookmarks.data];
@@ -125,6 +101,19 @@ export default function Editor(props) {
   function discardEdits() {
     navigate("/");
   }
+  /////////////////////////// EVENT LISTENER ///////////////////////////
+  useEffect(() => {
+    const keyPressChecker = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        document.getElementById("addCategoryForm").style.display = "none";
+      }
+    };
+    document.addEventListener("keydown", keyPressChecker);
+    return () => {
+      document.removeEventListener("keydown", keyPressChecker);
+    };
+  }, []);
+
   return (
     <>
       {/*/////////////////// DIALOG ////////////////////////////////*/}
@@ -150,7 +139,34 @@ export default function Editor(props) {
       </dialog>
       {/*//////////////////// DATA ////////////////////////////////*/}
       <h1 className="title">krypt/editor</h1>
-      <div className="center">{editorMap}</div>
+      <div className="center">
+        {editorMap}
+        <p>
+          Click on an entry or category to delete it, or click the plus buttons
+          to add a new entry or category
+        </p>
+        <button
+          id="addCategory"
+          onClick={() => {
+            const form = document.getElementById("addCategoryForm");
+            form.style.display = "inline";
+          }}
+        >
+          add new category
+        </button>
+        <form
+          id="addCategoryForm"
+          name="addCategory"
+          onSubmit={(e) => addCategory(e)}
+          style={{ display: "none" }}
+        >
+          <input name="categoryName" type="text" required />
+        </form>
+      </div>
+      <div className="bottom">
+        <button onClick={() => discardEdits()}>discard changes</button>
+        <button onClick={() => saveEdits()}>save edits</button>
+      </div>
     </>
   );
 }

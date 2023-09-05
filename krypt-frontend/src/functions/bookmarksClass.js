@@ -1,5 +1,3 @@
-import { objectIsEmpty } from "./objectIsEmpty";
-
 export class Bookmarks {
   constructor(exists, bookmarksJSON) {
     this._exists = exists;

@@ -1,8 +1,10 @@
 // colours
 $black: #000000;
+$blackTrans: rgba(0, 0, 0, 0.33);
 $col: #656565;
 $colHi: #989898;
 
+$blur: blur(15px);
 $border: 1px solid $col;
 $padding: 10px;
 $paddingSmall: 3px;
@@ -13,7 +15,9 @@ $header: calc($fontSize * 1.5);
 $mono: monospace, Courier;
 
 body {
-  background: url("./resources/background_dotted-halftone.jpg") $black;
+  background: $black;
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
 
 button {
@@ -30,14 +34,27 @@ button {
   min-width: 8vw;
 }
 dialog {
-  background-color: $black;
+  background-color: $blackTrans;
   border: $border;
 }
+dialog::backdrop {
+  backdrop-filter: $blur;
+  // background-color: $blackTrans;
+}
 input {
-  background-color: $black;
+  background-color: $blackTrans;
   border: $border;
   color: $colHi;
   outline: none;
+}
+.sidebar {
+  backdrop-filter: $blur;
+  background-color: $blackTrans;
+  border-right: $border;
+  height: 100vh;
+  max-width: 33vw;
+  min-width: 15vw;
+  z-index: 3;
 }
 
 p,
