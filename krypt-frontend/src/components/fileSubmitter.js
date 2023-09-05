@@ -12,12 +12,12 @@ export default function FileSubmitter(props) {
   async function dataPropHandler(e) {
     e.preventDefault();
     try {
-      const parsedFile = await extractFile(
-        props.fileType,
-        e.target[1].files[0]
-      );
+      let parsedFile = "";
+      if (props.preloadedFile === false || !props.preloadedFile) {
+        parsedFile = await extractFile(props.fileType, e.target[1].files[0]);
+      }
       const data = {
-        file: parsedFile,
+        file: props.preloadedFile ? props.bookmarks : parsedFile,
         algorithm: e.target.algorithm.value,
         key: e.target.key.value,
       };
