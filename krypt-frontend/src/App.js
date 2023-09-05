@@ -5,21 +5,38 @@ import { Route, Routes } from "react-router-dom";
 
 import { Bookmarks } from "./functions/bookmarksClass";
 
+import Config from "./components/config";
 import Editor from "./components/editor";
 import Encrypter from "./components/encrypter";
 import Homepage from "./components/homepage";
 import ToDecrypt from "./components/toDecrypt";
 
-// TODO add encrypter 
-
 export default function App() {
   const [bookmarks, changeBookmarks] = useState(new Bookmarks(false, null));
-  const [preloadFile, togglePreloadFile] = useState(false);
   document.cookie.includes("bookmarksStorage=true")
     ? (bookmarks.data = localStorage.getItem("bookmarks"))
-    : localStorage.removeItem("bookmarks");
+    : localStorage.clear();
+
+  const [config, toggleConfig] = useState(false);
+  useEffect(() => {
+    if (window.localStorage.getItem("backgroundImage")) {
+      document.getElementsByTagName(
+        "body"
+      )[0].style.backgroundImage = `url(${window.localStorage.getItem(
+        "backgroundImage"
+      )})`;
+    }
+  }, []);
+
   return (
     <>
+      {config ? (
+        <Config toggleConfig={(state) => toggleConfig(state)} />
+      ) : (
+        <>
+          <button onClick={() => toggleConfig(true)}>[]</button>
+        </>
+      )}
       <Routes>
         <Route
           path="/"
@@ -31,7 +48,6 @@ export default function App() {
                   changeBookmarks={(newBookmarks) =>
                     changeBookmarks(newBookmarks)
                   }
-                  preloadFile={(state) => togglePreloadFile(state)}
                 />
               </>
             ) : (
@@ -52,7 +68,7 @@ export default function App() {
             />
           }
         />
-        <Route path="/encrypt" element={<Encrypter bookmarks={bookmarks}/>} />
+        <Route path="/encrypt" element={<Encrypter bookmarks={bookmarks} />} />
       </Routes>
     </>
   );
