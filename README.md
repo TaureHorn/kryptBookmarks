@@ -14,6 +14,10 @@ A small project made mostly for the purposes of learning about:
 This a complete re-write of an earlier project. One much less stable or polished.
 #React #Express #~~M~~ERN Stack
 
+### screenshot
+![screenshot](https://raw.githubusercontent.com/TaureHorn/kryptBookmarks/main/krypt-frontend/src/resources/screenshot.jpg)
+ymmv with the background. Out of the box it's plain black, but you can upload your own image (~5MB or lower) for the background and it'll stay in localStorage. 
+
 ### .env
 The site needs a couple of variables in order to function. Add a .env file in the root folder of the frontend and add the following variables
 ```
