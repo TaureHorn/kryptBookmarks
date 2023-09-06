@@ -19,7 +19,6 @@ export default function App() {
     ? (bookmarks.data = localStorage.getItem("bookmarks"))
     : localStorage.clear();
 
-  const [config, toggleConfig] = useState(false);
   useEffect(() => {
     if (window.localStorage.getItem("backgroundImage")) {
       document.getElementsByTagName(

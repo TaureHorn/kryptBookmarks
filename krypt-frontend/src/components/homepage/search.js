@@ -20,7 +20,6 @@ export default function Search(props) {
     if (url.length >= 30) {
       url += "...";
     }
-    const confidence = query.score.toPrecision(2);
     return (
       <div key={`searchResult${index}`}>
         <a

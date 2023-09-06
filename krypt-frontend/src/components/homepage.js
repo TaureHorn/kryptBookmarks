@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { ApiDaemon } from "../functions/apiDaemon";
 import { Bookmarks } from "../functions/bookmarksClass";
