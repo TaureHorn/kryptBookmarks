@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
 import { Bookmarks } from "../functions/bookmarksClass";
+import { dialogCloser } from "../functions/dialogCloser";
 
 export default function Editor(props) {
   const navigate = useNavigate();
@@ -31,7 +32,12 @@ export default function Editor(props) {
                   className="editButton"
                   onClick={() => deleteCategory(index)}
                 >
-                  <span className="header">{header[0]}</span>
+                  <span
+                    className="header"
+                    style={{ overflowWrap: "break-word" }}
+                  >
+                    <strong>delete: {header[0]}</strong>
+                  </span>
                 </button>
                 <button
                   className="editButton"
@@ -42,7 +48,7 @@ export default function Editor(props) {
                     document.getElementById("entryAdderForm").showModal();
                   }}
                 >
-                  +
+                  <strong>ADD NEW ENTRY</strong>
                 </button>
                 {header[1].map((entry, subindex) => {
                   return (
@@ -51,7 +57,7 @@ export default function Editor(props) {
                         className="editButton"
                         onClick={() => deleteEntry(index, subindex)}
                       >
-                        {entry.name}
+                        delete: {entry.name}
                       </button>
                     </div>
                   );
@@ -70,6 +76,7 @@ export default function Editor(props) {
     const newData = [...editorBookmarks.data];
     newData.push([e.target.categoryName.value.toString(), []]);
     updateEditorBookmarks(new Bookmarks(true, Object.fromEntries(newData)));
+    document.getElementById("addCategoryForm").reset();
   }
 
   function deleteCategory(index) {
@@ -101,71 +108,73 @@ export default function Editor(props) {
   function discardEdits() {
     navigate("/");
   }
-  /////////////////////////// EVENT LISTENER ///////////////////////////
+
   useEffect(() => {
-    const keyPressChecker = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        document.getElementById("addCategoryForm").style.display = "none";
-      }
-    };
-    document.addEventListener("keydown", keyPressChecker);
-    return () => {
-      document.removeEventListener("keydown", keyPressChecker);
-    };
+    dialogCloser("entryAdderForm");
   }, []);
 
   return (
     <>
       {/*/////////////////// DIALOG ////////////////////////////////*/}
-      <dialog closed="true" id="entryAdderForm">
-        <span>add new bookmark to: </span>
-        <span
-          id="categoryName"
-          style={{ fontWeight: "bold", textTransform: "uppercase" }}
-        ></span>
-        <form id="newBookmarkEntry" onSubmit={(e) => addEntry(e)}>
-          <input
-            id="entryCategory"
-            name="category"
-            type="text"
-            style={{ display: "none" }}
-          />
-          <label>name:</label>
-          <input name="name" type="text" required />
-          <label>url:</label>
-          <input name="url" type="url" required />
-          <button type="submit" style={{ display: "none" }} />
-        </form>
+      <dialog id="entryAdderForm">
+        <div className="dialogContent">
+          <span>add new bookmark to: </span>
+          <span
+            id="categoryName"
+            style={{ fontWeight: "bold", textTransform: "uppercase" }}
+          ></span>
+          <form id="newBookmarkEntry" onSubmit={(e) => addEntry(e)}>
+            <input
+              id="entryCategory"
+              name="category"
+              type="text"
+              style={{ display: "none" }}
+            />
+            <label>name:</label>
+            <input
+              className="blackInputText"
+              name="name"
+              type="text"
+              required
+            />
+            <label> url:</label>
+            <input className="blackInputText" name="url" type="url" required />
+            <button type="submit" style={{ display: "none" }} />
+          </form>
+        </div>
       </dialog>
       {/*//////////////////// DATA ////////////////////////////////*/}
-      <h1 className="title">krypt/editor</h1>
-      <div className="center">
+      <h1 className="center top">krypt/editor</h1>
+      <div className="center middle">
         {editorMap}
-        <p>
-          Click on an entry or category to delete it, or click the plus buttons
-          to add a new entry or category
-        </p>
-        <button
-          id="addCategory"
-          onClick={() => {
-            const form = document.getElementById("addCategoryForm");
-            form.style.display = "inline";
-          }}
-        >
-          add new category
-        </button>
-        <form
-          id="addCategoryForm"
-          name="addCategory"
-          onSubmit={(e) => addCategory(e)}
-          style={{ display: "none" }}
-        >
-          <input name="categoryName" type="text" required />
-        </form>
+        <p className="bigMargin"></p>
+        <div className="border blur center translate padding">
+          <form
+            className="spread"
+            id="addCategoryForm"
+            name="addCategory"
+            onSubmit={(e) => addCategory(e)}
+          >
+            <label> new category name: </label>
+            <input
+              className="blackInputText"
+              name="categoryName"
+              type="text"
+              required
+            />
+            <button id="addCategory" type="submit">
+              add new category
+            </button>
+          </form>
+        </div>
       </div>
-      <div className="bottom">
-        <button onClick={() => discardEdits()}>discard changes</button>
-        <button onClick={() => saveEdits()}>save edits</button>
+      <div className="bottom center bottom">
+        <button className="biggerButton" onClick={() => discardEdits()}>
+          discard changes
+        </button>
+        <button className="biggerButton" onClick={() => saveEdits()}>
+          save edits
+        </button>
       </div>
     </>
   );

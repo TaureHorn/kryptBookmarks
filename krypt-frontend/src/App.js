@@ -11,6 +11,8 @@ import Encrypter from "./components/encrypter";
 import Homepage from "./components/homepage";
 import ToDecrypt from "./components/toDecrypt";
 
+import SidebarToggler from "./resources/sidebar.svg";
+
 export default function App() {
   const [bookmarks, changeBookmarks] = useState(new Bookmarks(false, null));
   document.cookie.includes("bookmarksStorage=true")
@@ -30,13 +32,14 @@ export default function App() {
 
   return (
     <>
-      {config ? (
-        <Config toggleConfig={(state) => toggleConfig(state)} />
-      ) : (
-        <>
-          <button onClick={() => toggleConfig(true)}>[]</button>
-        </>
-      )}
+      <img
+        alt="sidebar toggler"
+        className="sidebarToggler"
+        draggable="false"
+        onClick={() => document.getElementById("configDialog").showModal()}
+        src={SidebarToggler}
+      />
+      <Config />
       <Routes>
         <Route
           path="/"

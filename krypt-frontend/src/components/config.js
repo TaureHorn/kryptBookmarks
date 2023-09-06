@@ -1,6 +1,9 @@
+import { useEffect } from "react";
+
+import { dialogCloser } from "../functions/dialogCloser";
 import { extractFile } from "../functions/fileDataHandler";
 
-export default function Config(props) {
+export default function Config() {
   async function backgroundSetter(e) {
     e.preventDefault();
     const base64Image = await extractFile("image", e.target.files[0]);
@@ -10,16 +13,19 @@ export default function Config(props) {
     )[0].style.backgroundImage = `url(${base64Image})`;
   }
 
+  useEffect(() => {
+    dialogCloser('configDialog');
+  }, []);
+
   return (
-    <aside className='sidebar'>
-      <button onClick={() => props.toggleConfig(false)}>[]</button>
-      <form
-        id="imageGetter"
-        onChange={(e) => backgroundSetter(e)}
-      >
-        <label>Background image: </label>
-        <input accept="image/*" name="image" type="file" required />
-      </form>
-    </aside>
+    <dialog id="configDialog">
+      <div className="dialogContent">
+        <span className="mapHeader">CONFIG</span>
+        <form id="imageGetter" onChange={(e) => backgroundSetter(e)}>
+          <label>Background image: </label>
+          <input accept="image/*" name="image" type="file" required />
+        </form>
+      </div>
+    </dialog>
   );
 }

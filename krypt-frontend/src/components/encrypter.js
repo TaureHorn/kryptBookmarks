@@ -57,18 +57,32 @@ export default function Encrypter(props) {
 
   return (
     <>
-      <h1 className="title">{message}</h1>
+      <h1 className="center top">{message}</h1>
       {fileRecieved ? (
-        <div className="center">
-          <p>{`${formData.algorithm} encryption successful:`}</p>
-          <p>"{encryptedFile.slice(0, 50)}..."</p>
-          <button onClick={() => fileDownload()}>download</button>
+        <div className="border blur center middle">
+          <span className="alert formAlert">{`${formData.algorithm} encryption successful:`}</span>
+          <p
+            className="justifyCenter"
+            style={{ fontWeight: "bold" }}
+          >{`LINKS.${formData.algorithm.toUpperCase()}:`}</p>
+          <p className="padding">"{encryptedFile.slice(0, 70)}..."</p>
+          <div className="flex">
+            <button
+              className="biggerButton formSubmit"
+              onClick={() => fileDownload()}
+            >
+              download
+            </button>
+            <button
+              className="biggerButton formSubmit"
+              onClick={() => setFileRecieved(false)}
+            >
+              encrypt another file
+            </button>
+          </div>
         </div>
       ) : (
-        <div className="center">
-          <button onClick={() => changePreloadFile(preloadFile ? false : true)}>
-            {preloadFile ? <>unload</> : <>load</>} current bookmarks
-          </button>
+        <div className="border blur center middle">
           <FileSubmitter
             bookmarks={JSON.stringify(props.bookmarks.data)}
             data={(formData) => setFormData(formData)}
@@ -77,9 +91,17 @@ export default function Encrypter(props) {
           />
         </div>
       )}
-      <button className="bottom" onClick={() => navigate("/")}>
-        back to bookmarks
-      </button>
+      <div className="bottom center">
+        <button
+          className="biggerButton"
+          onClick={() => changePreloadFile(preloadFile ? false : true)}
+        >
+          {preloadFile ? <>unload</> : <>load</>} current bookmarks
+        </button>
+        <button className="biggerButton" onClick={() => navigate("/")}>
+          back to bookmarks
+        </button>
+      </div>
     </>
   );
 }

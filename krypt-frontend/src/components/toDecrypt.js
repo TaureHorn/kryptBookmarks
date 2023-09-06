@@ -34,7 +34,7 @@ export default function ToDecrypt(props) {
         if (constructor === "AxiosError") {
           setMessage(`${response.code}: ${response.message}`);
           return;
-        } else if (constructor == "Object") {
+        } else if (constructor === "Object") {
           const empty = objectIsEmpty(response.data);
           const valid = api.dataTester(response.data);
           if (empty === false && valid === true) {
@@ -64,14 +64,14 @@ export default function ToDecrypt(props) {
 
   return (
     <>
-      <h1 className="title">{message}</h1>
-      <div className="center">
+      <h1 className="center top">{message}</h1>
+      <div className="border blur center middle">
         <FileSubmitter
           data={(formData) => setFormData(formData)}
           fileType={"text"}
         />
       </div>
-      <button onClick={() => newBlankFile()} className="bottom">
+      <button onClick={() => newBlankFile()} className="bottom biggerButton center">
         create new blank file
       </button>
     </>

@@ -29,35 +29,39 @@ export default function FileSubmitter(props) {
 
   return (
     <>
-      <p>{errMsg}</p>
-      <form id="fileSubmitter" onSubmit={(e) => dataPropHandler(e)}>
-        <fieldset>
+      <form
+        className="form"
+        id="fileSubmitter"
+        onSubmit={(e) => dataPropHandler(e)}
+      >
+        <fieldset className="spread">
           {/*///////// FILE //////////*/}
-          <div id="fileInput">
-            <label htmlFor="file">file:</label>
-            {props.preloadedFile ? (
-              <span name="file">current bookmarks</span>
-            ) : (
-              <input autoFocus name="file" required type="file" />
-            )}
-          </div>
+          <label htmlFor="file">file:</label>
+          {props.preloadedFile ? (
+            <span name="file">current bookmarks</span>
+          ) : (
+            <input autoFocus name="file" required type="file" />
+          )}
           {/*///////// CRYPTOGRAPHIC ALGORITHM //////////*/}
-          <div id="algorithmSelector">
-            <label htmlFor="algorithm">algorithm:</label>
-            <select name="algorithm" required>
-              <option value="aes" label="aes" defaultValue />
-              <option value="rabbit" label="rabbit" />
-              <option value="rc4drop" label="rc4drop" />
-            </select>
-          </div>
+          <label htmlFor="algorithm"> algorithm:</label>
+          <select name="algorithm" required>
+            <option value="aes" label="aes" defaultValue />
+            <option value="rabbit" label="rabbit" />
+            <option value="rc4drop" label="rc4drop" />
+          </select>
           {/*///////// CRYPTOGRAPHIC KEY //////////*/}
-          <div id="keyInput">
-            <label htmlFor="key">secret key:</label>
-            <input name="key" required type="password" />
-          </div>
+          <label htmlFor="key"> secret key:</label>
+          <input
+            className="blackInputText"
+            name="key"
+            placeholder="*********"
+            required
+            type="password"
+          />
         </fieldset>
         {/*///////// SUBMIT BUTTON //////////*/}
-        <button form="fileSubmitter" type="submit">
+        {errMsg ? <span className="alert formAlert">{errMsg}</span> : <></>}
+        <button className="biggerButton formSubmit" form="fileSubmitter" type="submit">
           submit
         </button>
       </form>

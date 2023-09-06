@@ -1,10 +1,7 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 
-
 export default function Map(props) {
-  const navigate = useNavigate();
   const dataMap = bookmarksMapper(props.bookmarks);
 
   function bookmarksMapper(bookmarks) {
@@ -18,12 +15,20 @@ export default function Map(props) {
                 key={uuidv4()}
                 className="border map padding"
               >
-                <span className="header">{header[0]}</span>
+                <span className="mapHeader"> {header[0].toUpperCase()}</span>
                 {header[1].map((entry, index) => {
                   return (
-                    <div id={`${header[0]}-link${index}`} key={uuidv4()}>
-                      <a href={entry.url} target="_blank" rel="noreferrer">
-                        {entry.name}
+                    <div
+                      id={`${header[0]}-link${index}`}
+                      key={uuidv4()}
+                    >
+                      <a
+                        className="mapLink"
+                        href={entry.url}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {entry.name.toUpperCase()}
                       </a>
                     </div>
                   );
@@ -31,9 +36,6 @@ export default function Map(props) {
               </div>
             );
           })}
-        </div>
-        <div id="editorButtons">
-          <p>Or, start typing to search...</p>
         </div>
       </>
     );
@@ -55,7 +57,10 @@ export default function Map(props) {
   });
   return (
     <>
-      <div className="center">{dataMap}</div>
+      <div className="center middle">
+        {dataMap}
+        <p className="alert bigMargin center translate">start typing to search...</p>
+      </div>
     </>
   );
 }
