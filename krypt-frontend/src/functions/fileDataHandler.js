@@ -39,7 +39,7 @@ async function extractJSONfile(file) {
       };
     });
   } else {
-    throw new Error('Error: Incorrect file type. Submit a json file"');
+    throw new Error('Error: Incorrect file type >> Submit a json file');
   }
 }
 

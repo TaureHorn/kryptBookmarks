@@ -15,7 +15,7 @@ export default function Homepage(props) {
 
   return (
     <>
-      <h1 className="title">krypt/bookmarks</h1>
+      <h1 className="center top">krypt/bookmarks</h1>
       {search ? (
         <Search
           list={props.bookmarks.dataList}
@@ -28,10 +28,13 @@ export default function Homepage(props) {
         />
       )}
       {/*/////////////////////////// BUTTONS //////////////////////////////////*/}
-      <div id="buttons" className="bottom">
-        <button onClick={() => navigate("/editor")}>edit bookmarks</button>
+      <div id="buttons" className="bottom center">
+        <button className="biggerButton" onClick={() => navigate("/editor")}>
+          edit bookmarks
+        </button>
         {/*///////////////////////////////*/}
         <button
+          className="biggerButton"
           onClick={() => {
             navigate("/encrypt");
           }}
@@ -40,6 +43,7 @@ export default function Homepage(props) {
         </button>
         {/*///////////////////////////////*/}
         <button
+          className="biggerButton"
           onClick={() =>
             api.downloader(
               JSON.stringify(props.bookmarks._bookmarksJSON),
@@ -52,6 +56,7 @@ export default function Homepage(props) {
         </button>
         {/*///////////////////////////////*/}
         <button
+          className="biggerButton"
           onClick={() => {
             props.bookmarks.removeData();
             props.changeBookmarks(new Bookmarks(false, null));

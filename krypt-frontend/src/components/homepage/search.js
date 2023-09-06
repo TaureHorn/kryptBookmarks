@@ -20,18 +20,26 @@ export default function Search(props) {
     if (url.length >= 30) {
       url += "...";
     }
+    const confidence = query.score.toPrecision(2);
     return (
       <div key={`searchResult${index}`}>
         <a
+          className="searchLink"
           id={`result${index}`}
           href={query.item.url}
           target="_blank"
           rel="noreferrer"
           onClick={() => props.toggleSearch(false)}
         >
-          <span>{query.score.toString().slice(1, 4)}</span>
-          <span>{query.item.name}</span>
-          <span>{url}</span>
+          <div id={query.item.name} className="spread">
+            <div>
+              <span>[{query.score.toString().slice(1, 4)}] | </span>
+              <span className="searchResult">
+                {query.item.name.toUpperCase()}
+              </span>
+            </div>
+            <span>{url}</span>
+          </div>
         </a>
       </div>
     );
@@ -51,9 +59,14 @@ export default function Search(props) {
   }, []);
 
   return (
-    <div className="center">
-      <form id="fzfform" onSubmit={(e) => formSubmit(e)}>
+    <div className="border center search">
+      <form
+        className="searchField"
+        id="fzfform"
+        onSubmit={(e) => formSubmit(e)}
+      >
         <input
+          className="searchField"
           autoFocus
           id="fzf"
           name="fzf"
