@@ -14,14 +14,14 @@ A small project made mostly for the purposes of learning about:
 This a complete re-write of an earlier project. One much less stable or polished.
 #React #Express #~~M~~ERN Stack
 
-#### .env
+### .env
 The site needs a couple of variables in order to function. Add a .env file in the root folder of the frontend and add the following variables
 ```
 REACT_APP_BACKEND_URL= // add the url for the backend
 REACT_APP_COOKIE_EXPIRY= // a number for how many days before a stored cookie expires
-
 ```
-#### docker installation
+ 
+### docker installation
 first create a docker image by running the following command from within the frontend/backend directory.
 ```
 docker build -t $IMAGE_NAME .
