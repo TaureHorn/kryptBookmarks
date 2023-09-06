@@ -27,7 +27,7 @@ export default function Search(props) {
           href={query.item.url}
           target="_blank"
           rel="noreferrer"
-          onClick={() => props.search(false)}
+          onClick={() => props.toggleSearch(false)}
         >
           <span>{query.score.toString().slice(1, 4)}</span>
           <span>{query.item.name}</span>

@@ -49,6 +49,19 @@ export default function ToDecrypt(props) {
       });
   }
 
+  function newBlankFile() {
+    const newBookmarks = new Bookmarks(true, {
+      "new category": [
+        {
+          name: "replace me",
+          url: "https://github.com/TaureHorn/kryptBookmarks",
+        },
+      ],
+    });
+    api.dataSaver(newBookmarks._bookmarksJSON);
+    props.bookmarks(newBookmarks);
+  }
+
   return (
     <>
       <h1 className="title">{message}</h1>
@@ -58,6 +71,9 @@ export default function ToDecrypt(props) {
           fileType={"text"}
         />
       </div>
+      <button onClick={() => newBlankFile()} className="bottom">
+        create new blank file
+      </button>
     </>
   );
 }
