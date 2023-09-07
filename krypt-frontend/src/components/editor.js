@@ -7,9 +7,8 @@ import { dialogCloser } from "../functions/dialogCloser";
 
 export default function Editor(props) {
   const navigate = useNavigate();
-  const [editorBookmarks, updateEditorBookmarks] = useState(
-    new Bookmarks(true, Object.fromEntries(props.bookmarks.data))
-  );
+  const newState = new Bookmarks(true, props.bookmarks._bookmarksJSON);
+  const [editorBookmarks, updateEditorBookmarks] = useState(newState);
   const [editorMap, updateEditorMap] = useState(
     editorMapper(editorBookmarks.data)
   );
@@ -106,6 +105,9 @@ export default function Editor(props) {
     navigate("/");
   }
   function discardEdits() {
+    props.changeBookmarks(
+      new Bookmarks(true, JSON.parse(localStorage.getItem("bookmarks")))
+    );
     navigate("/");
   }
 
@@ -148,12 +150,13 @@ export default function Editor(props) {
       <div className="center middle">
         {editorMap}
         <p className="bigMargin"></p>
-        <div className="border blur center translate padding">
+        <div className="border blur center padding translate">
           <form
             className="spread"
             id="addCategoryForm"
             name="addCategory"
             onSubmit={(e) => addCategory(e)}
+            style={{ minWidth: "25vw" }}
           >
             <label> new category name: </label>
             <input

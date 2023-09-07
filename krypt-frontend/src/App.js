@@ -18,6 +18,13 @@ export default function App() {
   document.cookie.includes("bookmarksStorage=true")
     ? (bookmarks.data = localStorage.getItem("bookmarks"))
     : localStorage.clear();
+  useEffect(() => {
+    if (bookmarks._bookmarksJSON) {
+      bookmarks.data.map((header) => {
+        console.log(header[1]);
+      });
+    }
+  }, [bookmarks]);
 
   useEffect(() => {
     if (window.localStorage.getItem("backgroundImage")) {

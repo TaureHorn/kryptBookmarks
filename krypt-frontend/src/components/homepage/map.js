@@ -59,7 +59,7 @@ export default function Map(props) {
     <>
       <div className="center middle">
         {dataMap}
-        <p className="alert bigMargin center translate">start typing to search...</p>
+        <p className="bigMargin center translate">start typing to search...</p>
       </div>
     </>
   );

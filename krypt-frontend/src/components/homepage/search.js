@@ -58,7 +58,7 @@ export default function Search(props) {
   }, []);
 
   return (
-    <div className="border center search">
+    <div className="border blur center search">
       <form
         className="searchField"
         id="fzfform"
