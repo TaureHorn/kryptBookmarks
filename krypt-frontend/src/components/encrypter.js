@@ -32,7 +32,7 @@ export default function Encrypter(props) {
 
   function apiCall() {
     api
-      .encrypt(formData.algorith, formData.file, formData.key)
+      .encrypt(formData.algorithm, formData.file, formData.key)
       .then((response) => {
         const constructor = Object.getPrototypeOf(response).constructor.name;
         if (constructor === "AxiosError") {
@@ -62,7 +62,7 @@ export default function Encrypter(props) {
         <div className="border blur center middle">
           <span className="alert formAlert">{`${formData.algorithm} encryption successful:`}</span>
           <p
-            className="justifyCenter"
+            className="highlight justifyCenter"
             style={{ fontWeight: "bold" }}
           >{`LINKS.${formData.algorithm.toUpperCase()}:`}</p>
           <p className="padding">"{encryptedFile.slice(0, 70)}..."</p>
