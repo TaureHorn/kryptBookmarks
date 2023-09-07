@@ -45,6 +45,17 @@ button {
   backdrop-filter: $blur;
   background: none;
   border: $border;
+  cursor: pointer;
+}
+button:hover {
+  border: $brightBorder;
+  color: $colHi;
+  font-weight: bold;
+}
+button:active {
+  background-color: $col;
+  color: $black;
+  font-weight: bolder;
 }
 dialog {
   background-color: $blackTrans;
@@ -76,6 +87,33 @@ input {
   font-weight: bolder;
   outline: none;
 }
+input:hover {
+  background-color: $colHi;
+}
+input[type="file"] {
+  color: $black;
+  cursor: pointer;
+  font-family: $mono;
+  font-weight: normal;
+}
+input[type="file"]:active {
+  background-color: $colHi;
+}
+input[type="file"]::file-selector-button {
+  background-color: $col;
+  border: $border;
+  color: $black;
+  font-family: $mono;
+}
+input[type="file"]::file-selector-button:hover {
+  background-color: $colHi;
+}
+input[type="file"]::file-selector-button:active {
+  background-color: $colHi;
+}
+img {
+  cursor: pointer;
+}
 label {
   font-weight: bold;
   text-transform: uppercase;
@@ -94,6 +132,7 @@ select {
   background: $col;
   border: $brightBorder;
   color: $black;
+  cursor: pointer;
 }
 
 ////////////////// CLASSES ////////////////////////////
@@ -143,6 +182,9 @@ select {
 }
 .blur {
   backdrop-filter: $blur;
+}
+.highlight {
+  color: $colHi;
 }
 .justifyCenter {
   text-align: center;
