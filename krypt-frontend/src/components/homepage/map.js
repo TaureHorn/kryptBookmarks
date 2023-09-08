@@ -2,7 +2,24 @@ import { useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 export default function Map(props) {
-  const dataMap = bookmarksMapper(props.bookmarks);
+  function linkSorter() {
+    const sortedLinks = [];
+    props.bookmarks.forEach((category) => {
+      sortedLinks.push([
+        category[0],
+        category[1].sort((a, b) => {
+          if (a.name.toUpperCase() < b.name.toUpperCase()) {
+            return -1;
+          }
+          if (a.name.toUpperCase() > b.name.toUpperCase()) {
+            return 1;
+          }
+          return 0;
+        }),
+      ]);
+    });
+    return sortedLinks;
+  }
 
   function bookmarksMapper(bookmarks) {
     return (
@@ -18,10 +35,7 @@ export default function Map(props) {
                 <span className="mapHeader"> {header[0].toUpperCase()}</span>
                 {header[1].map((entry, index) => {
                   return (
-                    <div
-                      id={`${header[0]}-link${index}`}
-                      key={uuidv4()}
-                    >
+                    <div id={`${header[0]}-link${index}`} key={uuidv4()}>
                       <a
                         className="mapLink"
                         href={entry.url}
@@ -41,6 +55,8 @@ export default function Map(props) {
     );
   }
 
+  const dataMap = bookmarksMapper(linkSorter());
+
   /////////////////////////// EVENT LISTENER ///////////////////////////
   useEffect(() => {
     const characters =
@@ -59,7 +75,9 @@ export default function Map(props) {
     <>
       <div className="center middle">
         {dataMap}
-        <p className="bigMargin center highlight translate">start typing to search...</p>
+        <p className="bigMargin center highlight translate">
+          start typing to search...
+        </p>
       </div>
     </>
   );
