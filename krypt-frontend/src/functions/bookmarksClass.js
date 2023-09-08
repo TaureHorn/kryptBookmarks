@@ -29,7 +29,15 @@ export class Bookmarks {
       }
     }
     if (typeof bookmarksData === "object") {
-      this._bookmarksJSON = bookmarksData;
+      let sortedData = "";
+      try {
+        const sortedCategories = this.categorySorter(bookmarksData);
+        sortedData = this.linkSorter(sortedCategories);
+      } catch (err) {
+        console.log(err);
+        sortedData = bookmarksData;
+      }
+      this._bookmarksJSON = sortedData;
       this.checkStatus();
     }
   }
@@ -54,5 +62,35 @@ export class Bookmarks {
       "bookmarks",
       JSON.stringify(this._bookmarksJSON)
     );
+  }
+  categorySorter(categories) {
+    const sortedCategories = Object.entries(categories).sort((a, b) => {
+      if (a[0].toUpperCase() < b[0].toUpperCase()) {
+        return -1;
+      }
+      if (a[0].toUpperCase() > b[0].toUpperCase()) {
+        return 1;
+      }
+      return 0;
+    });
+    return sortedCategories;
+  }
+  linkSorter(bookmarksArr) {
+    const sortedLinks = [];
+    bookmarksArr.forEach((category) => {
+      sortedLinks.push([
+        category[0],
+        category[1].sort((a, b) => {
+          if (a.name.toUpperCase() < b.name.toUpperCase()) {
+            return -1;
+          }
+          if (a.name.toUpperCase() > b.name.toUpperCase()) {
+            return 1;
+          }
+          return 0;
+        }),
+      ]);
+    });
+    return Object.fromEntries(sortedLinks);
   }
 }

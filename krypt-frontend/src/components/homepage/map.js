@@ -1,10 +1,8 @@
 import { useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 
-import { linkSorter } from "../../functions/linkSorter";
 
 export default function Map(props) {
-    console.log(props.bookmarks)
   function bookmarksMapper(bookmarks) {
     return (
       <>
@@ -39,7 +37,7 @@ export default function Map(props) {
     );
   }
 
-  const dataMap = bookmarksMapper(linkSorter(props.bookmarks));
+  const dataMap = bookmarksMapper(props.bookmarks);
 
   /////////////////////////// EVENT LISTENER ///////////////////////////
   useEffect(() => {

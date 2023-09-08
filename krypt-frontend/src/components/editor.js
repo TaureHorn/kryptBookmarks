@@ -4,14 +4,10 @@ import { v4 as uuidv4 } from "uuid";
 
 import { Bookmarks } from "../functions/bookmarksClass";
 import { dialogCloser } from "../functions/dialogCloser";
-import { linkSorter } from "../functions/linkSorter";
 
 export default function Editor(props) {
   const navigate = useNavigate();
-  const newState = new Bookmarks(
-    true,
-    Object.fromEntries(linkSorter(props.bookmarks.data))
-  );
+  const newState = new Bookmarks(true, props.bookmarks._bookmarksJSON);
   const [editorBookmarks, updateEditorBookmarks] = useState(newState);
   const [editorMap, updateEditorMap] = useState(
     editorMapper(editorBookmarks.data)
