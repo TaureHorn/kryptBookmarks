@@ -84,7 +84,7 @@ export default function Encrypter(props) {
       ) : (
         <div className="border blur center middle">
           <FileSubmitter
-            bookmarks={JSON.stringify(props.bookmarks.data)}
+            bookmarks={JSON.stringify(Object.fromEntries(props.bookmarks.data))}
             data={(formData) => setFormData(formData)}
             fileType={"json"}
             preloadedFile={preloadFile}
@@ -92,12 +92,16 @@ export default function Encrypter(props) {
         </div>
       )}
       <div className="bottom center">
-        <button
-          className="biggerButton"
-          onClick={() => changePreloadFile(preloadFile ? false : true)}
-        >
-          {preloadFile ? <>unload</> : <>load</>} current bookmarks
-        </button>
+        {fileRecieved ? (
+          <></>
+        ) : (
+          <button
+            className="biggerButton"
+            onClick={() => changePreloadFile(preloadFile ? false : true)}
+          >
+            {preloadFile ? <>unload</> : <>load</>} current bookmarks
+          </button>
+        )}{" "}
         <button className="biggerButton" onClick={() => navigate("/")}>
           back to bookmarks
         </button>
