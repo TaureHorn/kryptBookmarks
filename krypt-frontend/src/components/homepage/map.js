@@ -1,26 +1,10 @@
 import { useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 
-export default function Map(props) {
-  function linkSorter() {
-    const sortedLinks = [];
-    props.bookmarks.forEach((category) => {
-      sortedLinks.push([
-        category[0],
-        category[1].sort((a, b) => {
-          if (a.name.toUpperCase() < b.name.toUpperCase()) {
-            return -1;
-          }
-          if (a.name.toUpperCase() > b.name.toUpperCase()) {
-            return 1;
-          }
-          return 0;
-        }),
-      ]);
-    });
-    return sortedLinks;
-  }
+import { linkSorter } from "../../functions/linkSorter";
 
+export default function Map(props) {
+    console.log(props.bookmarks)
   function bookmarksMapper(bookmarks) {
     return (
       <>
@@ -55,7 +39,7 @@ export default function Map(props) {
     );
   }
 
-  const dataMap = bookmarksMapper(linkSorter());
+  const dataMap = bookmarksMapper(linkSorter(props.bookmarks));
 
   /////////////////////////// EVENT LISTENER ///////////////////////////
   useEffect(() => {
