@@ -3,7 +3,7 @@ import axios from "axios";
 import FileSaver from "file-saver";
 
 const URL = process.env.REACT_APP_BACKEND_URL;
-const expiryWindow = process.env.REACT_APP_COOKIE_EXPIRY;
+const expiryWindow = parseInt(process.env.REACT_APP_COOKIE_EXPIRY);
 
 export class ApiDaemon {
   async decrypt(algorithm, file, key) {
