@@ -73,6 +73,11 @@ export default function Search(props) {
                     elementList[0].focus()
                 }
             }
+
+            const characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+            if (characters.includes(event.key) || event.key === "Backspace") {
+                document.getElementById('fzf').focus()
+            }
         };
         document.addEventListener("keydown", keyPressChecker);
         return () => {

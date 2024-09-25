@@ -41,8 +41,7 @@ export default function Map(props) {
 
   /////////////////////////// EVENT LISTENER ///////////////////////////
   useEffect(() => {
-    const characters =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
     const keyPressChecker = (event: KeyboardEvent) => {
       if (characters.includes(event.key)) {
         props.toggleSearch(true);
