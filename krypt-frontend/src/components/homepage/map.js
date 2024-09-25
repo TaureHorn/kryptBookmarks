@@ -42,7 +42,7 @@ export default function Map(props) {
   /////////////////////////// EVENT LISTENER ///////////////////////////
   useEffect(() => {
     const characters =
-      "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
     const keyPressChecker = (event: KeyboardEvent) => {
       if (characters.includes(event.key)) {
         props.toggleSearch(true);
@@ -58,9 +58,10 @@ export default function Map(props) {
       <div className="center middle">
         {dataMap}
         <p className="bigMargin center highlight translate">
-          start typing to search...
+            type [A-Z,0-9] to search...
         </p>
       </div>
     </>
   );
 }
+

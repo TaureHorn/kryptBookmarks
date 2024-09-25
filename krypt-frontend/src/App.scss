@@ -23,101 +23,121 @@ $brightBorder: 1px solid $colHi;
 ////////////////// TAGS ///////////////////////////////
 // page
 html {
-  margin: 0;
-  min-height: 100%;
+    margin: 0;
+    min-height: 100%;
 }
+
 body {
-  background: $black;
-  background-repeat: no-repeat;
-  background-size: cover;
-  margin: 0;
-  min-height: 100%;
+    background: $black;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0;
+    min-height: 100%;
 }
+
 // elements
 a {
-  display: block;
-  text-decoration: none;
+    display: block;
+    text-decoration: none;
 }
+
 a:hover {
-  color: $colHi;
+    color: $colHi;
 }
+
 button {
-  backdrop-filter: $blur;
-  background: none;
-  border: $border;
-  cursor: pointer;
+    backdrop-filter: $blur;
+    background: none;
+    border: $border;
+    cursor: pointer;
 }
+
 button:hover {
-  border: $brightBorder;
-  color: $colHi;
-  font-weight: bold;
+    border: $brightBorder;
+    color: $colHi;
+    font-weight: bold;
 }
+
 button:active {
-  background-color: $col;
-  color: $black;
-  font-weight: bolder;
+    background-color: $col;
+    color: $black;
+    font-weight: bolder;
 }
+
 dialog {
-  background-color: $blackTrans;
-  border: $border;
-  outline: none;
-  padding: 0;
-  position: fixed;
+    background-color: $blackTrans;
+    border: $border;
+    outline: none;
+    padding: 0;
+    position: fixed;
 }
+
 dialog::backdrop {
-  backdrop-filter: $blur;
-  cursor: pointer;
+    backdrop-filter: $blur;
+    cursor: pointer;
 }
+
 fieldset {
-  border: none;
-  outline: none;
+    border: none;
+    outline: none;
 }
+
 h1 {
-  background-color: $col;
-  color: $black;
-  font-family: $mono;
-  font-size: calc($fontSize * 3);
-  padding: $paddingSmall;
-  text-transform: uppercase;
+    background-color: $col;
+    color: $black;
+    font-family: $mono;
+    font-size: calc($fontSize * 3);
+    padding: $paddingSmall;
+    text-transform: uppercase;
 }
+
 input {
-  background-color: $col;
-  border: $brightBorder;
-  color: $black;
-  font-weight: bolder;
-  outline: none;
+    background-color: $col;
+    border: $brightBorder;
+    color: $black;
+    font-weight: bolder;
+    outline: none;
 }
+
 input:hover {
-  background-color: $colHi;
+    background-color: $colHi;
 }
+
 input[type="file"] {
-  color: $black;
-  cursor: pointer;
-  font-family: $mono;
-  font-weight: normal;
+    color: $black;
+    cursor: pointer;
+    font-family: $mono;
+    font-weight: normal;
 }
+
 input[type="file"]:active {
-  background-color: $colHi;
+    background-color: $colHi;
 }
+
 input[type="file"]::file-selector-button {
-  background-color: $col;
-  border: $border;
-  color: $black;
-  font-family: $mono;
+    background-color: $col;
+    border: $border;
+    color: $black;
+    font-family: $mono;
 }
+
 input[type="file"]::file-selector-button:hover {
-  background-color: $colHi;
+    background-color: $colHi;
 }
+
 input[type="file"]::file-selector-button:active {
-  background-color: $colHi;
+    background-color: $colHi;
 }
+
 img {
-  cursor: pointer;
+    cursor: pointer;
 }
+
 label {
-  font-weight: bold;
-  text-transform: uppercase;
+    font-weight: bold;
+    text-transform: uppercase;
 }
+
 p,
 span,
 a,
@@ -125,199 +145,237 @@ input,
 label,
 select,
 button {
-  color: $col;
-  font-family: $mono;
+    color: $col;
+    font-family: $mono;
 }
+
 select {
-  background: $col;
-  border: $brightBorder;
-  color: $black;
-  cursor: pointer;
+    background: $col;
+    border: $brightBorder;
+    color: $black;
+    cursor: pointer;
 }
 
 ////////////////// CLASSES ////////////////////////////
 // positioning
 .center {
-  left: 50%;
-  position: absolute;
+    left: 50%;
+    position: absolute;
 
-  &.top {
-    top: 10%;
-    transform: translate(-50%, -50%);
-  }
-  &.middle {
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
-  &.bottom {
-    bottom: 0%;
-    transform: translate(-50%, -50%);
-  }
-  &.search {
-    top: 33%;
-    transform: translate(-50%, 0%);
-  }
-  &.translate {
-    transform: translate(-50%, -50%);
-  }
+    &.top {
+        top: 10%;
+        transform: translate(-50%, -50%);
+    }
+
+    &.middle {
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    &.bottom {
+        bottom: 0%;
+        transform: translate(-50%, -50%);
+    }
+
+    &.search {
+        top: 33%;
+        transform: translate(-50%, 0%);
+    }
+
+    &.translate {
+        transform: translate(-50%, -50%);
+    }
 }
+
 .inline {
-  display: flex;
-  gap: 2%;
-  transform: translate(-5%, 0%);
+    display: flex;
+    gap: 2%;
+    transform: translate(-5%, 0%);
 }
+
 .flex {
-  display: flex;
+    display: flex;
 }
+
 // singles
 .border {
-  border: $border;
+    border: $border;
 }
+
 .bigMargin {
-  $padding: calc($padding * 4);
-  margin: $padding 0 $padding 0;
+    $padding: calc($padding * 4);
+    margin: $padding 0 $padding 0;
 }
+
 .blackInputText {
-  color: $black !important;
+    color: $black !important;
 }
+
 .blur {
-  backdrop-filter: $blur;
+    backdrop-filter: $blur;
 }
+
 .highlight {
-  color: $colHi;
+    color: $colHi;
 }
+
 .justifyCenter {
-  text-align: center;
+    text-align: center;
 }
+
 .padding {
-  padding: $padding;
+    padding: $padding;
 }
+
 .paddingSmall {
-  padding: $paddingSmall;
+    padding: $paddingSmall;
 }
+
 // elements
 .alert {
-  display: inline-block;
-  background-color: $col;
-  color: $black;
-  font-size: $biggerFont;
-  font-weight: bolder;
-  outline: $brightBorder;
-  padding: $paddingSmall;
-  text-transform: uppercase;
-  z-index: 3;
+    display: inline-block;
+    background-color: $col;
+    color: $black;
+    font-size: $biggerFont;
+    font-weight: bolder;
+    outline: $brightBorder;
+    padding: $paddingSmall;
+    text-transform: uppercase;
+    z-index: 3;
 }
+
 .biggerButton {
-  color: $colHi;
-  min-width: 10vw;
-  padding: $padding;
-  text-transform: uppercase;
+    color: $colHi;
+    min-width: 10vw;
+    padding: $padding;
+    text-transform: uppercase;
 }
+
 .dialogContent {
-  padding: $padding;
+    padding: $padding;
 }
+
 .editButton {
-  padding: $padding;
-  text-transform: uppercase;
-  width: 100%;
+    padding: $padding;
+    text-transform: uppercase;
+    width: 100%;
 }
+
 .formAlert {
-  width: 99.4%;
-  text-align: center;
+    width: 99.4%;
+    text-align: center;
 }
+
 .form {
-  min-width: 33vw;
+    min-width: 33vw;
 }
+
 .formSubmit {
-  width: 100%;
+    width: 100%;
 }
+
 ///// MAP
 .map {
-  backdrop-filter: $blur;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-  display: block;
-  min-height: 25vh;
-  min-width: 8vw;
-  overflow-wrap: break-word;
-  z-index: 2;
+    backdrop-filter: $blur;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    display: block;
+    min-height: 25vh;
+    min-width: 8vw;
+    overflow-wrap: break-word;
+    z-index: 2;
 }
+
 .mapHeader {
-  color: $colHi;
-  font-size: $biggerFont;
-  font-weight: bold;
+    color: $colHi;
+    font-size: $biggerFont;
+    font-weight: bold;
 }
+
 .mapLink {
-  line-height: 2;
-  width: 100%;
+    line-height: 2;
+    width: 100%;
 }
+
 .mapLink:hover {
-  background-color: $col;
-  color: $black;
-  font-weight: bold;
+    background-color: $col;
+    color: $black;
+    font-weight: bold;
 }
+
 ///// \MAP
 ///// SEARCH
 .searchField {
-  min-width: 33vw;
-  & input {
-    background-color: $blackTrans;
-    color: $col;
-    font-size: $biggerFont;
-    font-weight: bolder;
-    text-transform: uppercase;
-    width: 99.4%;
-  }
+    min-width: 33vw;
+
+    & input {
+        background-color: $blackTrans;
+        color: $col;
+        font-size: $biggerFont;
+        font-weight: bolder;
+        text-transform: uppercase;
+        width: 99.4%;
+    }
 }
+
 .searchResult {
-  color: $colHi;
-  font-weight: bold;
-  line-height: 2;
+    color: $colHi;
+    font-weight: bold;
+    line-height: 2;
 }
+
 .searchField:hover,
 .searchField:focus,
 .searchLink:hover,
 .searchLink:focus {
-  background-color: $col !important;
-  border: none;
-  color: $black;
-  & input {
+    background-color: $col !important;
+    border: none;
     color: $black;
-  }
-  outline: none;
-  & span {
-    color: $black;
-  }
+
+    & input {
+        color: $black;
+    }
+
+    outline: none;
+
+    & span {
+        color: $black;
+    }
 }
+
 ///// \SEARCH
 .sidebarToggler {
-  bottom: 10px;
-  height: 32px;
-  left: 10px;
-  opacity: 0.25;
-  position: absolute;
-  width: 32px;
-  z-index: 5;
+    bottom: 10px;
+    height: 32px;
+    left: 10px;
+    opacity: 0.25;
+    position: absolute;
+    width: 32px;
+    z-index: 5;
 }
+
 .sidebarToggler:hover {
-  opacity: 0.66;
+    opacity: 0.66;
 }
+
 .sidebarToggler:active {
-  opacity: 1;
+    opacity: 1;
 }
+
 .sidebar {
-  backdrop-filter: $blur;
-  // background-color: $blackTrans;
-  background-color: rgba(255, 255, 255, 0.065);
-  border-right: $border;
-  height: 100vh;
-  max-width: 25vw;
-  min-width: 23vw;
-  position: fixed;
-  z-index: 4;
+    backdrop-filter: $blur;
+    // background-color: $blackTrans;
+    background-color: rgba(255, 255, 255, 0.065);
+    border-right: $border;
+    height: 100vh;
+    max-width: 25vw;
+    min-width: 23vw;
+    position: fixed;
+    z-index: 4;
 }
+
 .spread {
-  align-items: center;
-  display: flex;
-  gap: 10px;
-  justify-content: space-between;
+    align-items: center;
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
 }
