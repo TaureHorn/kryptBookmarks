@@ -2,7 +2,7 @@ import axios from "axios";
 
 import FileSaver from "file-saver";
 
-const URL = process.env.REACT_APP_BACKEND_URL;
+const URL = window.location.protocol === 'https' ? process.env.REACT_APP_BACKEND_URL : process.env.REACT_APP_BACKEND_LOCAL_URL
 const expiryWindow = parseInt(process.env.REACT_APP_COOKIE_EXPIRY);
 
 export class ApiDaemon {
