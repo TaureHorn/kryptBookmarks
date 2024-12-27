@@ -21,7 +21,8 @@ ymmv with the background. Out of the box it's plain black, but you can upload yo
 ### .env
 The site needs a couple of variables in order to function. Add a .env file in the root folder of the frontend and add the following variables
 ```
-REACT_APP_BACKEND_URL= // add the url for the backend
+REACT_APP_BACKEND_URL= // add the url for the backend --> used when conneting over https
+REACT_APP_BACKEND_LOCAL_URL= // add the url for the backend --> used when connecting over http
 REACT_APP_COOKIE_EXPIRY= // a number for how many days before a stored cookie expires
 ```
  
